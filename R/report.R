@@ -8,6 +8,5 @@
 #' @export
 get_graph_statistics <- function (graph)
 {
-    print ("hello")
     rcpp_graph_components (graph)
 }

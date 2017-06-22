@@ -122,20 +122,20 @@ std::map <int, int> get_largest_graph_component (vertex_map &v, std::map <vertex
 // [[Rcpp::export]]
 Rcpp::DataFrame rcpp_graph_components (Rcpp::DataFrame graph)
 {
-    Rcpp::Rcout << "hello rcpp" << std::endl;
     vertex_map vertices;
     std::map <vertex_id_t, int> components;
     int largest_component;
 
     graph_from_df (graph, vertices);
-    get_largest_graph_component (vertices, components, largest_component);
+    std::map <int, int> component_numbers = get_largest_graph_component
+        (vertices, components, largest_component);
 
-    std::vector <vertex_id_t> ids;
-    ids.reserve (components.size ());
+    std::vector <int> ids;
+    ids.reserve (component_numbers.size ());
     std::vector <int> sizes;
-    sizes.reserve (components.size ());
+    sizes.reserve (component_numbers.size ());
 
-    for (auto kv : components)
+    for (auto kv : component_numbers)
     {
         ids.push_back (kv.first);
         sizes.push_back (kv.second);
