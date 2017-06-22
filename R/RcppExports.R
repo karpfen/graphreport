@@ -10,6 +10,6 @@
 #'
 #' @noRd
 rcpp_graph_components <- function(graph) {
-    .Call('graphreport_rcpp_graph_components', PACKAGE = 'graphreport', graph)
+    .Call(graphreport_rcpp_graph_components, graph)
 }
 
