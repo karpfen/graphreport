@@ -5,5 +5,7 @@
 #' @name graphreport-package
 #' @docType package
 #' @importFrom Rcpp evalCpp
+#' @importFrom magrittr %>%
+#' @importFrom stats quantile
 #' @useDynLib graphreport, .registration = TRUE
 NULL
