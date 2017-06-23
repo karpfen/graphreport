@@ -67,3 +67,17 @@ get_edge_weight_summary <- function (graph, n = 10)
     rownames (quantiles) <- NULL
     quantiles
 }
+
+#' Get number of unique vertices
+#'
+#' @param graph \code{data.frame} containing the graph. must have columns from
+#' and to, so each row defines an edge.
+#'
+#' @return The number of unique vertices in the graph.
+#'
+#' @export
+get_num_unique_vertices <- function (graph)
+{
+    uq <- unique (c (graph$from, graph$to))
+    length (uq)
+}

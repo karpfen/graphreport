@@ -18,15 +18,27 @@ devtools::install_github ('karpfen/graphreport')
 Usage
 -----
 
-This example shows how to get some basic information about a graph.
+### Generating a complete graph report
 
 ``` r
 n <- 50
 from <- as.integer (runif (min = 0, max = 100, n))
 to <- as.integer (runif (min = 0, max = 100, n))
 weight <- runif (n)
-
 graph <- data.frame (from, to, weight)
+
+generate_graph_report (graph)
+```
+
+### Getting individual graph statistics
+
+``` r
+n <- 50
+from <- as.integer (runif (min = 0, max = 100, n))
+to <- as.integer (runif (min = 0, max = 100, n))
+weight <- runif (n)
+graph <- data.frame (from, to, weight)
+
 sizes <- get_graph_sizes (graph)
 length (sizes) # print the number of graphs
 sizes # print the size of every graph

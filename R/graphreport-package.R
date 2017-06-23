@@ -6,6 +6,7 @@
 #' @docType package
 #' @importFrom Rcpp evalCpp
 #' @importFrom magrittr %>%
+#' @importFrom rmarkdown draft
 #' @importFrom stats quantile
 #' @useDynLib graphreport, .registration = TRUE
 NULL

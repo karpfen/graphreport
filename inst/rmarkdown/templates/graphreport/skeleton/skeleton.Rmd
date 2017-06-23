@@ -1,0 +1,45 @@
+---
+title: "Graph summary"
+output: pdf_document
+params:
+    graph: graph
+    n: n
+---
+
+```{r echo = FALSE}
+unique_vert <- get_num_unique_vertices (params$graph)
+num_edges <- dim (params$graph) [1]
+
+sizes <- get_graph_sizes (params$graph)
+num_graphs <- length (sizes)
+
+degrees <- get_node_degrees (params$graph)
+s_freq <- summary (degrees$frequency)
+summary_freq <- data.frame (names (s_freq))
+summary_freq$Value <- s_freq
+names (summary_freq) [1] <- "Statistic"
+
+weight_summary <- get_edge_weight_summary (params$graph, params$n)
+```
+
+# Overview
+
+Number of vertices: `r unique_vert`
+
+Number of edges: `r num_edges`
+
+# Graph sizes
+
+These are the sizes of all disconnected graphs in the provided `data.frame`.
+
+Number of graphs: `r num_graphs`
+
+Graph sizes: `r sizes`
+
+# Degrees
+
+`r knitr::kable (summary_freq, row.names = FALSE)`
+
+# Edge weights
+
+`r knitr::kable (weight_summary, row.names = FALSE)`

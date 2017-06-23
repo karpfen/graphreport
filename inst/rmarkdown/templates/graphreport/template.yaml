@@ -1,0 +1,3 @@
+name: Graph summary
+description: Report about the statics of a given graph.
+create_dir: true
