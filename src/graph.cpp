@@ -55,9 +55,9 @@ void graph_from_df (Rcpp::DataFrame gr, vertex_map &vm)
     }
 }
 
-std::map <int, int> get_largest_graph_component (vertex_map &v, std::map <vertex_id_t, int> &com,
-        int &largest_id)
+std::map <int, int> get_largest_graph_component (vertex_map &v)
 {
+    std::map <vertex_id_t, int> com;
     int component_number = 0;
     // initialize components map
     for (auto it = v.begin (); it != v.end (); ++ it)
@@ -102,10 +102,8 @@ std::map <int, int> get_largest_graph_component (vertex_map &v, std::map <vertex
                 com_size ++;
         }
         if (com_size > largest_component_value)
-        {
             largest_component_value = com_size;
-            largest_id = uc;
-        }
+        
         component_size.insert (std::make_pair (uc, com_size));
     }
     return component_size;
@@ -122,13 +120,11 @@ std::map <int, int> get_largest_graph_component (vertex_map &v, std::map <vertex
 // [[Rcpp::export]]
 Rcpp::DataFrame rcpp_graph_components (Rcpp::DataFrame graph)
 {
-    vertex_map vertices;
-    std::map <vertex_id_t, int> components;
+    vertex_map vt_m;
     int largest_component;
 
-    graph_from_df (graph, vertices);
-    std::map <int, int> component_numbers = get_largest_graph_component
-        (vertices, components, largest_component);
+    graph_from_df (graph, vt_m);
+    std::map <int, int> component_numbers = get_largest_graph_component (vt_m);
 
     std::vector <int> ids;
     ids.reserve (component_numbers.size ());
