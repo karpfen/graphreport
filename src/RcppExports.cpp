@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // rcpp_graph_components
-Rcpp::DataFrame rcpp_graph_components(Rcpp::DataFrame graph);
+Rcpp::IntegerVector rcpp_graph_components(Rcpp::DataFrame graph);
 RcppExport SEXP graphreport_rcpp_graph_components(SEXP graphSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

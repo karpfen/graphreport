@@ -55,7 +55,7 @@ void graph_from_df (Rcpp::DataFrame gr, vertex_map &vm)
     }
 }
 
-std::map <int, int> get_largest_graph_component (vertex_map &v)
+std::map <int, int> get_graph_component_sizes (vertex_map &v)
 {
     std::map <vertex_id_t, int> com;
     int component_number = 0;
@@ -111,35 +111,27 @@ std::map <int, int> get_largest_graph_component (vertex_map &v)
 
 //' rcpp_graph_components
 //'
-//' Calculates the number and size of graph components
+//' Calculates the number and size of graph components.
 //'
-//' @param graph graph to be analysed
-//' @return \code{Rcpp::DataFrame} containing the graph component IDs and sizes.
+//' @param graph graph to be analysed.
+//' @return \code{Rcpp::IntegerVector} containing the graph component sizes in
+//' descending order.
 //'
 //' @noRd
 // [[Rcpp::export]]
-Rcpp::DataFrame rcpp_graph_components (Rcpp::DataFrame graph)
+Rcpp::IntegerVector rcpp_graph_components (Rcpp::DataFrame graph)
 {
     vertex_map vt_m;
     int largest_component;
 
     graph_from_df (graph, vt_m);
-    std::map <int, int> component_numbers = get_largest_graph_component (vt_m);
+    std::map <int, int> component_numbers = get_graph_component_sizes (vt_m);
 
-    std::vector <int> ids;
-    ids.reserve (component_numbers.size ());
-    std::vector <int> sizes;
-    sizes.reserve (component_numbers.size ());
+    Rcpp::IntegerVector sizes;
+    for (auto cn : component_numbers)
+        sizes.push_back (cn.second);
 
-    for (auto kv : component_numbers)
-    {
-        ids.push_back (kv.first);
-        sizes.push_back (kv.second);
-    }
+    std::sort (sizes.begin (), sizes.end (), std::greater <int> ());
 
-    Rcpp::DataFrame component_stats = Rcpp::DataFrame::create (
-            Rcpp::Named ("id") = ids,
-            Rcpp::Named ("size") = sizes);
-
-    return component_stats;
+    return sizes;
 }

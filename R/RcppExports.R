@@ -3,10 +3,11 @@
 
 #' rcpp_graph_components
 #'
-#' Calculates the number and size of graph components
+#' Calculates the number and size of graph components.
 #'
-#' @param graph graph to be analysed
-#' @return \code{Rcpp::DataFrame} containing the graph component IDs and sizes.
+#' @param graph graph to be analysed.
+#' @return \code{Rcpp::IntegerVector} containing the graph component sizes in
+#' descending order.
 #'
 #' @noRd
 rcpp_graph_components <- function(graph) {

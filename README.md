@@ -15,6 +15,23 @@ Install
 devtools::install_github ('karpfen/graphreport')
 ```
 
+Usage
+-----
+
+This example shows how to get information about how many disconnected graphs are in a `data.frame` and what their size is.
+
+``` r
+n <- 50
+from <- as.integer (runif (min = 0, max = 100, n))
+to <- as.integer (runif (min = 0, max = 100, n))
+weight <- runif (n)
+
+graph <- data.frame (from, to, weight)
+graph_stats <- get_graph_statistics (graph)
+length (graph_stats) # print the number of graphs
+graph_stats # print the size of every graph
+```
+
 Code of Conduct
 ---------------
 
