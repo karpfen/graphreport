@@ -16,3 +16,14 @@ The number of unique vertices in the graph.
 \description{
 Get number of unique vertices
 }
+\examples{
+\dontrun{
+n <- 50
+from <- as.integer (runif (min = 0, max = 100, n))
+to <- as.integer (runif (min = 0, max = 100, n))
+weight <- runif (n)
+graph <- data.frame (from, to, weight)
+
+get_num_unique_vertices (graph = graph)
+}
+}

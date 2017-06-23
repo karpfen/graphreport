@@ -4,7 +4,8 @@
 \alias{generate_graph_report}
 \title{Generate graph report from a template}
 \usage{
-generate_graph_report(graph, article_name = "graph-report", n = 10)
+generate_graph_report(graph, article_name = "graph-report", n = 10,
+  format = "pdf_document")
 }
 \arguments{
 \item{graph}{\code{data.frame} containing the graph. must have columns from,
@@ -13,7 +14,22 @@ to and weight, so each row defines an edge.}
 \item{article_name}{file name of the article.}
 
 \item{n}{The desired number of quantiles for the edge weight section.}
+
+\item{format}{One or multiple values indicating the desired output format of
+the report. See \code{rmarkdown::render} for possible formats.}
 }
 \description{
 Generate graph report from a template
+}
+\examples{
+\dontrun{
+n <- 50
+from <- as.integer (runif (min = 0, max = 100, n))
+to <- as.integer (runif (min = 0, max = 100, n))
+weight <- runif (n)
+graph <- data.frame (from, to, weight)
+
+generate_graph_report (graph = graph, n = 5, format = c ("html_document",
+"pdf_document"))
+}
 }

@@ -16,3 +16,14 @@ to and weight, so each row defines an edge.}
 \description{
 Get degrees of all nodes in the graph
 }
+\examples{
+\dontrun{
+n <- 50
+from <- as.integer (runif (min = 0, max = 100, n))
+to <- as.integer (runif (min = 0, max = 100, n))
+weight <- runif (n)
+graph <- data.frame (from, to, weight)
+
+get_node_degrees (graph = graph)
+}
+}

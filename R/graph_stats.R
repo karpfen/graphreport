@@ -31,6 +31,17 @@ get_graph_sizes <- function (graph)
 #' @return \code{data.frame} the ID and frequency of every node in the graph.
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' n <- 50
+#' from <- as.integer (runif (min = 0, max = 100, n))
+#' to <- as.integer (runif (min = 0, max = 100, n))
+#' weight <- runif (n)
+#' graph <- data.frame (from, to, weight)
+#' 
+#' get_node_degrees (graph = graph)
+#' }
 get_node_degrees <- function (graph)
 {
     uq_all <- c (graph$from, graph$to) %>% unique
@@ -58,6 +69,17 @@ get_node_degrees <- function (graph)
 #' given number of quantiles.
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' n <- 50
+#' from <- as.integer (runif (min = 0, max = 100, n))
+#' to <- as.integer (runif (min = 0, max = 100, n))
+#' weight <- runif (n)
+#' graph <- data.frame (from, to, weight)
+#' 
+#' get_edge_weight_summary (graph = graph, n = 5)
+#' }
 get_edge_weight_summary <- function (graph, n = 10)
 {
     quants <- (1:n) / n
@@ -76,6 +98,17 @@ get_edge_weight_summary <- function (graph, n = 10)
 #' @return The number of unique vertices in the graph.
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' n <- 50
+#' from <- as.integer (runif (min = 0, max = 100, n))
+#' to <- as.integer (runif (min = 0, max = 100, n))
+#' weight <- runif (n)
+#' graph <- data.frame (from, to, weight)
+#' 
+#' get_num_unique_vertices (graph = graph)
+#' }
 get_num_unique_vertices <- function (graph)
 {
     uq <- unique (c (graph$from, graph$to))

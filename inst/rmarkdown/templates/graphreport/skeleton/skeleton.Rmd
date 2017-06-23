@@ -1,6 +1,5 @@
 ---
 title: "Graph summary"
-output: pdf_document
 params:
     graph: graph
     n: n
