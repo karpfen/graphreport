@@ -34,7 +34,7 @@ sizes # print the size of every graph
 degrees <- get_node_degrees (graph)
 summary (degrees)
 
-get_edge_weight_summary (graph)
+get_edge_weight_summary (graph, 5)
 ```
 
 Code of Conduct
