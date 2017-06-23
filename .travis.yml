@@ -1,0 +1,25 @@
+language: r
+warnings_are_errors: true
+sudo: required
+cache: packages
+
+matrix:
+    include:
+        - os: linux
+          r: release
+          dist: trusty # 14.04
+          env: R_CODECOV=true
+        - os: linux
+          r: devel
+        - os: osx
+          r: release
+          before_install: ''
+          disable_homebrew: true
+
+r_github_packages:
+    - jimhester/covr
+
+after_success:
+    - Rscript -e 'covr::codecov()'
+    - Rscript -e "source ('https://install-github.me/MangoTheCat/goodpractice')"
+    - Rscript -e 'library(goodpractice);gp(checks=all_checks())'

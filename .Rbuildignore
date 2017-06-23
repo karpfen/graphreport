@@ -1,1 +1,4 @@
 ^CONDUCT\.md$
+^README[.]Rmd$
+^makefile$
+^\.travis\.yml$
