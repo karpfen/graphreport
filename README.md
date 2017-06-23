@@ -18,27 +18,24 @@ devtools::install_github ('karpfen/graphreport')
 Usage
 -----
 
-### Generating a complete graph report
-
 ``` r
+# create random sample graph with 50 edges
 n <- 50
 from <- as.integer (runif (min = 0, max = 100, n))
 to <- as.integer (runif (min = 0, max = 100, n))
 weight <- runif (n)
 graph <- data.frame (from, to, weight)
+```
 
+### Generating a complete graph report
+
+``` r
 generate_graph_report (graph)
 ```
 
 ### Getting individual graph statistics
 
 ``` r
-n <- 50
-from <- as.integer (runif (min = 0, max = 100, n))
-to <- as.integer (runif (min = 0, max = 100, n))
-weight <- runif (n)
-graph <- data.frame (from, to, weight)
-
 sizes <- get_graph_sizes (graph)
 length (sizes) # print the number of graphs
 sizes # print the size of every graph
