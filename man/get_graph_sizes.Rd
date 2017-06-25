@@ -7,8 +7,8 @@
 get_graph_sizes(graph)
 }
 \arguments{
-\item{graph}{\code{data.frame} containing the graph. must have columns from,
-to and weight, so each row defines an edge.}
+\item{graph}{\code{data.frame} containing the graph. must have columns from
+and to, so each row defines an edge.}
 }
 \value{
 \code{vector} containing the sizes of all individual graph components
@@ -23,7 +23,7 @@ n <- 50
 from <- as.integer (runif (min = 0, max = 100, n))
 to <- as.integer (runif (min = 0, max = 100, n))
 weight <- runif (n)
-graph <- data.frame (from, to, weight)
+graph <- data.frame (from, to)
 
 get_graph_sizes (graph = graph)
 }

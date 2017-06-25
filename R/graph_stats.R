@@ -1,7 +1,7 @@
 #' Get number and sizes of graph components
 #'
-#' @param graph \code{data.frame} containing the graph. must have columns from,
-#' to and weight, so each row defines an edge.
+#' @param graph \code{data.frame} containing the graph. must have columns from
+#' and to, so each row defines an edge.
 #'
 #' @return \code{vector} containing the sizes of all individual graph components
 #' in descending order.
@@ -14,19 +14,24 @@
 #' from <- as.integer (runif (min = 0, max = 100, n))
 #' to <- as.integer (runif (min = 0, max = 100, n))
 #' weight <- runif (n)
-#' graph <- data.frame (from, to, weight)
+#' graph <- data.frame (from, to)
 #' 
 #' get_graph_sizes (graph = graph)
 #' }
 get_graph_sizes <- function (graph)
 {
+    if (class (graph) != "data.frame")
+        stop ("graph must be of type data.frame.")
+    names (graph) %<>% tolower
+    if (!all (c ("from", "to") %in% names (graph)))
+        stop ("graph must contain columns from and to.")
     rcpp_graph_components (graph)
 }
 
 #' Get degrees of all nodes in the graph
 #'
-#' @param graph \code{data.frame} containing the graph. must have columns from,
-#' to and weight, so each row defines an edge.
+#' @param graph \code{data.frame} containing the graph. must have columns from
+#' and to, so each row defines an edge.
 #'
 #' @return \code{data.frame} the ID and frequency of every node in the graph.
 #'
@@ -37,13 +42,17 @@ get_graph_sizes <- function (graph)
 #' n <- 50
 #' from <- as.integer (runif (min = 0, max = 100, n))
 #' to <- as.integer (runif (min = 0, max = 100, n))
-#' weight <- runif (n)
-#' graph <- data.frame (from, to, weight)
+#' graph <- data.frame (from, to)
 #' 
 #' get_node_degrees (graph = graph)
 #' }
 get_node_degrees <- function (graph)
 {
+    if (class (graph) != "data.frame")
+        stop ("graph must be of type data.frame.")
+    names (graph) %<>% tolower
+    if (!all (c ("from", "to") %in% names (graph)))
+        stop ("graph must contain columns from and to.")
     uq_all <- c (graph$from, graph$to) %>% unique
     degrees <- data.frame (uq_all)
     names (degrees) <- "id"
@@ -82,6 +91,11 @@ get_node_degrees <- function (graph)
 #' }
 get_edge_weight_summary <- function (graph, n = 10)
 {
+    if (class (graph) != "data.frame")
+        stop ("graph must be of type data.frame.")
+    names (graph) %<>% tolower
+    if (!all (c ("from", "to", "weight") %in% names (graph)))
+        stop ("graph must contain columns from, to and weight.")
     quants <- (1:n) / n
     qq <- quantile (graph$weight, probs = quants)
     quantiles <- data.frame (names (qq), qq)
@@ -104,13 +118,17 @@ get_edge_weight_summary <- function (graph, n = 10)
 #' n <- 50
 #' from <- as.integer (runif (min = 0, max = 100, n))
 #' to <- as.integer (runif (min = 0, max = 100, n))
-#' weight <- runif (n)
-#' graph <- data.frame (from, to, weight)
+#' graph <- data.frame (from, to)
 #' 
 #' get_num_unique_vertices (graph = graph)
 #' }
 get_num_unique_vertices <- function (graph)
 {
+    if (class (graph) != "data.frame")
+        stop ("graph must be of type data.frame.")
+    names (graph) %<>% tolower
+    if (!all (c ("from", "to") %in% names (graph)))
+        stop ("graph must contain columns from and to.")
     uq <- unique (c (graph$from, graph$to))
     length (uq)
 }

@@ -1,5 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.org/karpfen/graphreport.svg?branch=master)](https://travis-ci.org/karpfen/graphreport)
+[![Build Status](https://travis-ci.org/karpfen/graphreport.svg?branch=master)](https://travis-ci.org/karpfen/graphreport) [![codecov](https://codecov.io/gh/karpfen/graphreport/branch/master/graph/badge.svg)](https://codecov.io/gh/karpfen/graphreport)
 
 graphreport
 ===========

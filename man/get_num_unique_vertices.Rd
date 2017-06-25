@@ -21,8 +21,7 @@ Get number of unique vertices
 n <- 50
 from <- as.integer (runif (min = 0, max = 100, n))
 to <- as.integer (runif (min = 0, max = 100, n))
-weight <- runif (n)
-graph <- data.frame (from, to, weight)
+graph <- data.frame (from, to)
 
 get_num_unique_vertices (graph = graph)
 }

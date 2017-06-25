@@ -26,6 +26,11 @@
 generate_graph_report <- function (graph, article_name = "graph-report", n = 10,
                                    format = "pdf_document")
 {
+    if (class (graph) != "data.frame")
+        stop ("graph must be of type data.frame.")
+    names (graph) %<>% tolower
+    if (!all (c ("from", "to", "weight") %in% names (graph)))
+        stop ("graph must contain columns from, to and weight.")
     fname <- paste0 (article_name, ".Rmd")
 
     rmarkdown::draft (file = fname, edit = FALSE, package = "graphreport",

@@ -28,7 +28,6 @@ void graph_from_df (Rcpp::DataFrame gr, vertex_map &vm)
 {
     Rcpp::StringVector from = gr ["from"];
     Rcpp::StringVector to = gr ["to"];
-    Rcpp::NumericVector weight = gr ["weight"];
 
     for (int i = 0; i < to.length (); i ++)
     {
