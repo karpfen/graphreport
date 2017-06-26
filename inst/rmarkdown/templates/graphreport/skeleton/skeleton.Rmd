@@ -10,10 +10,10 @@ unique_vert <- get_num_unique_vertices (params$graph)
 num_edges <- dim (params$graph) [1]
 
 sizes <- get_graph_sizes (params$graph)
-num_graphs <- sum (sizes$frequency)
+num_graphs <- sum (sizes$Frequency)
 
 degrees <- get_node_degrees (params$graph)
-s_freq <- summary (degrees$Frequency)
+s_freq <- summary (degrees$frequency)
 summary_freq <- data.frame (names (s_freq))
 summary_freq$Value <- s_freq
 names (summary_freq) [1] <- "Statistic"
