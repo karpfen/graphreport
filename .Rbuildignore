@@ -2,3 +2,4 @@
 ^README[.]Rmd$
 ^makefile$
 ^\.travis\.yml$
+^appveyor\.yml$
