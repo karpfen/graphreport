@@ -3,8 +3,8 @@
 #' @param graph \code{data.frame} containing the graph. must have columns from
 #' and to, so each row defines an edge.
 #'
-#' @return \code{vector} containing the sizes of all individual graph components
-#' in descending order.
+#' @return \code{data.frame} containing the sizes and frequencies of all
+#' individual graph components in descending order.
 #'
 #' @export
 #'
@@ -25,7 +25,14 @@ get_graph_sizes <- function (graph)
     names (graph) %<>% tolower
     if (!all (c ("from", "to") %in% names (graph)))
         stop ("graph must contain columns from and to.")
-    rcpp_graph_components (graph)
+    sizes <- rcpp_graph_components (graph)
+    sizes_tbl <- table (sizes)
+    size <- names (sizes_tbl) %>% as.integer
+    vals <- sizes_tbl %>% as.integer
+    sizes_freq <- data.frame (size, vals)
+    names (sizes_freq) <- c ("size", "frequency")
+    sizes_freq <- sizes_freq [with (sizes_freq, order (-size)), ]
+    sizes_freq
 }
 
 #' Get degrees of all nodes in the graph

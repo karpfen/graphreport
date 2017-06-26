@@ -10,7 +10,7 @@ unique_vert <- get_num_unique_vertices (params$graph)
 num_edges <- dim (params$graph) [1]
 
 sizes <- get_graph_sizes (params$graph)
-num_graphs <- length (sizes)
+num_graphs <- dim (sizes) [1]
 
 degrees <- get_node_degrees (params$graph)
 s_freq <- summary (degrees$frequency)
@@ -33,7 +33,7 @@ These are the sizes of all disconnected graphs in the provided `data.frame`.
 
 Number of graphs: `r num_graphs`
 
-Graph sizes: `r sizes`
+Graph sizes: `r knitr::kable (sizes, row.names = FALSE)`
 
 # Degrees
 

@@ -11,8 +11,8 @@ get_graph_sizes(graph)
 and to, so each row defines an edge.}
 }
 \value{
-\code{vector} containing the sizes of all individual graph components
-in descending order.
+\code{data.frame} containing the sizes and frequencies of all
+individual graph components in descending order.
 }
 \description{
 Get number and sizes of graph components

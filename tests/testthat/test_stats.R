@@ -4,7 +4,7 @@ test_that ("graph_sizes", {
     to <- as.integer (runif (min = 0, max = 100, n))
     graph <- data.frame (from, to)
     sizes <- get_graph_sizes (graph)
-    testthat::expect_type (sizes, "integer")
+    testthat::expect_type (sizes, "list")
     testthat::expect_error (get_graph_sizes (n),
                             "graph must be of type data.frame.")
     graph_err <- data.frame (from, from)
