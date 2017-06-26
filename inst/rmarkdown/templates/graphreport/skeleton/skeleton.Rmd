@@ -10,7 +10,7 @@ unique_vert <- get_num_unique_vertices (params$graph)
 num_edges <- dim (params$graph) [1]
 
 sizes <- get_graph_sizes (params$graph)
-num_graphs <- dim (sizes) [1]
+num_graphs <- sum (sizes$frequency)
 
 degrees <- get_node_degrees (params$graph)
 s_freq <- summary (degrees$frequency)
