@@ -30,7 +30,7 @@ get_graph_sizes <- function (graph)
     size <- names (sizes_tbl) %>% as.integer
     vals <- sizes_tbl %>% as.integer
     sizes_freq <- data.frame (size, vals)
-    names (sizes_freq) <- c ("size", "frequency")
+    names (sizes_freq) <- c ("Size", "Frequency")
     sizes_freq <- sizes_freq [with (sizes_freq, order (-size)), ]
     sizes_freq
 }

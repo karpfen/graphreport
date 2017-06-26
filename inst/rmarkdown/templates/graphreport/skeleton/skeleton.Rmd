@@ -13,7 +13,7 @@ sizes <- get_graph_sizes (params$graph)
 num_graphs <- sum (sizes$frequency)
 
 degrees <- get_node_degrees (params$graph)
-s_freq <- summary (degrees$frequency)
+s_freq <- summary (degrees$Frequency)
 summary_freq <- data.frame (names (s_freq))
 summary_freq$Value <- s_freq
 names (summary_freq) [1] <- "Statistic"
@@ -29,7 +29,7 @@ Number of edges: `r num_edges`
 
 # Graph sizes
 
-These are the sizes of all disconnected graphs in the provided `data.frame`.
+These are the sizes based on the number of unique vertices of all disconnected graphs in the provided `data.frame`.
 
 Number of graphs: `r num_graphs`
 
