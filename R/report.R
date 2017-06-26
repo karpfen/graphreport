@@ -10,6 +10,8 @@
 #' @param format One or multiple values indicating the desired output format of
 #' the report. See \code{rmarkdown::render} for possible formats.
 #'
+#' @param overwrite If \code{TRUE}, overwrites existing reports.
+#'
 #' @export
 #'
 #' @examples
@@ -21,10 +23,10 @@
 #' graph <- data.frame (from, to, weight)
 #' 
 #' generate_graph_report (graph = graph, n = 5, format = c ("html_document",
-#' "pdf_document"))
+#' "pdf_document", overwrite = FALSE))
 #' }
 generate_graph_report <- function (graph, article_name = "graph-report", n = 10,
-                                   format = "pdf_document")
+                                   format = "pdf_document", overwrite = TRUE)
 {
     if (class (graph) != "data.frame")
         stop ("graph must be of type data.frame.")
@@ -33,9 +35,21 @@ generate_graph_report <- function (graph, article_name = "graph-report", n = 10,
         stop ("graph must contain columns from, to and weight.")
     fname <- paste0 (article_name, ".Rmd")
 
-    rmarkdown::draft (file = fname, edit = FALSE, package = "graphreport",
-                      template = "graphreport")
-    rmarkdown::render (paste0 (article_name, "/", fname),
-                       params = list ("graph" = graph, "n" = n),
-                       output_format = format)
+    dirs <- list.dirs (recursive = FALSE)
+    if (!paste0 ("./", article_name) %in% dirs)
+    {
+        rmarkdown::draft (file = fname, edit = FALSE, package = "graphreport",
+                          template = "graphreport")
+        overwrite <- TRUE
+    }
+    if (overwrite)
+    {
+        rmarkdown::render (paste0 (article_name, "/", fname),
+                           params = list ("graph" = graph, "n" = n),
+                           output_format = format)
+    } else
+    {
+        stop (paste0 ("Report in folder '", article_name, "' already exists. ",
+                      "Choose different name or enable overwriting."))
+    }
 }

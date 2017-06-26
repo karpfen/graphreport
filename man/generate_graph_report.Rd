@@ -5,7 +5,7 @@
 \title{Generate graph report from a template}
 \usage{
 generate_graph_report(graph, article_name = "graph-report", n = 10,
-  format = "pdf_document")
+  format = "pdf_document", overwrite = TRUE)
 }
 \arguments{
 \item{graph}{\code{data.frame} containing the graph. must have columns from,
@@ -17,6 +17,8 @@ to and weight, so each row defines an edge.}
 
 \item{format}{One or multiple values indicating the desired output format of
 the report. See \code{rmarkdown::render} for possible formats.}
+
+\item{overwrite}{If \code{TRUE}, overwrites existing reports.}
 }
 \description{
 Generate graph report from a template
@@ -30,6 +32,6 @@ weight <- runif (n)
 graph <- data.frame (from, to, weight)
 
 generate_graph_report (graph = graph, n = 5, format = c ("html_document",
-"pdf_document"))
+"pdf_document", overwrite = FALSE))
 }
 }

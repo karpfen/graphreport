@@ -4,7 +4,7 @@ test_that ("graph_sizes", {
     graph <- data.frame (from, to)
     graph_err <- data.frame (from, from)
 
-    testthat::expect_error (get_graph_sizes (n),
+    testthat::expect_error (get_graph_sizes (from),
                             "graph must be of type data.frame.")
     testthat::expect_error (get_graph_sizes (graph_err),
         "graph must contain columns from and to.")
@@ -21,7 +21,7 @@ test_that ("node_degrees", {
     graph <- data.frame (from, to)
     graph_err <- data.frame (from, from)
 
-    testthat::expect_error (get_node_degrees (n),
+    testthat::expect_error (get_node_degrees (from),
                             "graph must be of type data.frame.")
     testthat::expect_error (get_node_degrees (graph_err),
         "graph must contain columns from and to.")
@@ -39,7 +39,7 @@ test_that ("edge_weight", {
     graph <- data.frame (from, to, weight)
     graph_err <- data.frame (from, to)
 
-    testthat::expect_error (get_edge_weight_summary (n),
+    testthat::expect_error (get_edge_weight_summary (from),
                             "graph must be of type data.frame.")
     testthat::expect_error (get_edge_weight_summary (graph_err),
         "graph must contain columns from, to and weight.")
@@ -56,7 +56,7 @@ test_that ("unique_vertices", {
     graph <- data.frame (from, to, weight)
     graph_err <- data.frame (from, from)
 
-    testthat::expect_error (get_num_unique_vertices (n),
+    testthat::expect_error (get_num_unique_vertices (from),
                             "graph must be of type data.frame.")
     testthat::expect_error (get_num_unique_vertices (graph_err),
         "graph must contain columns from and to.")
