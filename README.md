@@ -49,4 +49,4 @@ get_edge_weight_summary (graph, 5)
 Code of Conduct
 ---------------
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/osm-router/osmprob/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/karpfen/graphreport/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms.
