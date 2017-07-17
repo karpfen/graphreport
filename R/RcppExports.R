@@ -11,6 +11,6 @@
 #'
 #' @noRd
 rcpp_graph_components <- function(graph) {
-    .Call(graphreport_rcpp_graph_components, graph)
+    .Call(`_graphreport_rcpp_graph_components`, graph)
 }
 

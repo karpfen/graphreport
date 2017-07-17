@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rcpp_graph_components
 Rcpp::IntegerVector rcpp_graph_components(Rcpp::DataFrame graph);
-RcppExport SEXP graphreport_rcpp_graph_components(SEXP graphSEXP) {
+RcppExport SEXP _graphreport_rcpp_graph_components(SEXP graphSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"graphreport_rcpp_graph_components", (DL_FUNC) &graphreport_rcpp_graph_components, 1},
+    {"_graphreport_rcpp_graph_components", (DL_FUNC) &_graphreport_rcpp_graph_components, 1},
     {NULL, NULL, 0}
 };
 

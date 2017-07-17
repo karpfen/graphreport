@@ -10,8 +10,8 @@ struct vertex_t
         std::set <vertex_id_t> in, out;
 
     public:
-        void add_neighbour_in (vertex_id_t osm_id) { in.insert (osm_id); }
-        void add_neighbour_out (vertex_id_t osm_id) { out.insert (osm_id); }
+        void add_neighbour_in (vertex_id_t v_id) { in.insert (v_id); }
+        void add_neighbour_out (vertex_id_t v_id) { out.insert (v_id); }
         int get_degree_in () { return in.size (); }
         int get_degree_out () { return out.size (); }
         std::set <vertex_id_t> get_all_neighbours ()
@@ -79,10 +79,10 @@ std::map <int, int> get_graph_component_sizes (vertex_map &v)
             com.at (n) = largest_comp_num;
         for (auto c = com.begin (); c != com.end (); ++ c)
         {
-            vertex_id_t cOsm = c -> first;
+            vertex_id_t com_id = c -> first;
             int cNum = c -> second;
             if (comps.find (cNum) != comps.end () && cNum != -1)
-                com.at (cOsm) = largest_comp_num;
+                com.at (com_id) = largest_comp_num;
         }
     }
 
