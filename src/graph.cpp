@@ -22,7 +22,7 @@ struct vertex_t
         }
 };
 
-typedef std::map <vertex_id_t, vertex_t> vertex_map;
+typedef std::unordered_map <vertex_id_t, vertex_t> vertex_map;
 
 void graph_from_df (Rcpp::DataFrame gr, vertex_map &vm)
 {
@@ -54,9 +54,9 @@ void graph_from_df (Rcpp::DataFrame gr, vertex_map &vm)
     }
 }
 
-std::map <int, int> get_graph_component_sizes (vertex_map &v)
+std::unordered_map <int, int> get_graph_component_sizes (vertex_map &v)
 {
-    std::map <vertex_id_t, int> com;
+    std::unordered_map <vertex_id_t, int> com;
     int component_number = 0;
     // initialize components map
     for (auto it = v.begin (); it != v.end (); ++ it)
@@ -91,7 +91,7 @@ std::map <int, int> get_graph_component_sizes (vertex_map &v)
         unique_components.insert (c.second);
 
     int largest_component_value = -1;
-    std::map <int, int> component_size;
+    std::unordered_map <int, int> component_size;
     for (auto uc:unique_components)
     {
         int com_size = 0;
@@ -124,7 +124,8 @@ Rcpp::IntegerVector rcpp_graph_components (Rcpp::DataFrame graph)
     int largest_component;
 
     graph_from_df (graph, vt_m);
-    std::map <int, int> component_numbers = get_graph_component_sizes (vt_m);
+    std::unordered_map <int, int> component_numbers =
+        get_graph_component_sizes (vt_m);
 
     Rcpp::IntegerVector sizes;
     for (auto cn : component_numbers)
